@@ -49,11 +49,11 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  int getPrice() {
-    int price = 0;
+  double getPrice() {
+    double price = 0;
 
     for (var i = 0; i < productCardList.length; i++) {
-      price += productCardList[i].price;
+      price += (productCardList[i].price);
     }
     return price;
   }

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stylish/models/Product.dart';
 import 'package:stylish/provider/cartProvider.dart';
-import 'package:stylish/screens/cart/components/product_cart.dart';
-import '../../constants.dart';
+import 'package:stylish/view/screens/cart/components/product_cart.dart';
+import '../../../common/constant/size_constants.dart';
+import '../../theme/custom_colors.dart';
 import '../details/details_screen.dart';
 
 class CartScreen extends StatelessWidget {
@@ -61,12 +62,12 @@ class CartScreen extends StatelessWidget {
                           image: item.image,
                           price: item.price,
                           countItemOrder: count,
-                          
                           remove: () {
                             cardProvider.removeProduct(item);
                           },
-                          removeAll:(){                            cardProvider.removeProductAll(item);
-},
+                          removeAll: () {
+                            cardProvider.removeProductAll(item);
+                          },
                           press: () {
                             Navigator.push(
                               context,
@@ -76,8 +77,10 @@ class CartScreen extends StatelessWidget {
                                 ),
                               ),
                             );
-                          }, addItem:(){ cardProvider.addToCart(item); }
-,
+                          },
+                          addItem: () {
+                            cardProvider.addToCart(item);
+                          },
                         ),
                       );
                     }).toList(),
@@ -88,8 +91,8 @@ class CartScreen extends StatelessWidget {
                 flex: 1,
                 child: Container(
                   color: Colors.grey[200],
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: defaultPadding),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: SizeConstants.defaultPadding),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:stylish/constants.dart';
+import 'package:stylish/common/constant/assets_constants.dart';
+import 'package:stylish/common/constant/size_constants.dart';
 import 'package:stylish/models/Product.dart';
-import 'package:stylish/screens/cart/cart_screen.dart';
-import '../../provider/cartProvider.dart';
+import 'package:stylish/view/screens/cart/cart_screen.dart';
+import '../../../provider/cartProvider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../theme/custom_colors.dart';
 
 class DetailsScreen extends StatelessWidget {
   DetailsScreen({Key? key, required this.product}) : super(key: key);
@@ -62,7 +65,7 @@ class DetailsScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
+                        child: Image.network(
                           product.image[index],
                           height: MediaQuery.of(context).size.height * 0.4,
                           fit: BoxFit.fitHeight,
@@ -71,27 +74,30 @@ class DetailsScreen extends StatelessWidget {
                     }),
               ),
             ),
-            SmoothPageIndicator(
-              controller: _controller,
-              count: product.image.length,
-                            effect: const SlideEffect(
-                activeDotColor: Colors.black,
-                dotColor: Colors.grey,
-                type : SlideType.slideUnder
-              ),
-
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SmoothPageIndicator(
+                controller: _controller,
+                count: product.image.length,
+                              effect: const SlideEffect(
+                  activeDotColor: Colors.black,
+                  dotColor: Colors.grey,
+                  type : SlideType.slideUnder
+                ),
               
+                
+              ),
             ),
-            const SizedBox(height: defaultPadding * 1.5),
+            const SizedBox(height: SizeConstants.defaultPadding * 1.5),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.fromLTRB(defaultPadding,
-                    defaultPadding * 2, defaultPadding, defaultPadding),
+                padding: const EdgeInsets.fromLTRB(SizeConstants.defaultPadding,
+                    SizeConstants.defaultPadding * 2, SizeConstants.defaultPadding, SizeConstants.defaultPadding),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(defaultBorderRadius * 3),
-                    topRight: Radius.circular(defaultBorderRadius * 3),
+                    topLeft: Radius.circular(SizeConstants.defaultBorderRadius * 3),
+                    topRight: Radius.circular(SizeConstants.defaultBorderRadius * 3),
                   ),
                 ),
                 child: Column(
@@ -105,7 +111,7 @@ class DetailsScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.headline6,
                           ),
                         ),
-                        const SizedBox(width: defaultPadding),
+                        const SizedBox(width: SizeConstants.defaultPadding),
                         Text(
                           product.price.toString() + " ريال",
                           style: Theme.of(context).textTheme.headline6,
@@ -114,33 +120,13 @@ class DetailsScreen extends StatelessWidget {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsets.symmetric(vertical: defaultPadding),
+                          const EdgeInsets.symmetric(vertical: SizeConstants.defaultPadding),
                       child: Text(
                         product.details,
                       ),
                     ),
-                    // Text(
-                    //   "Colors",
-                    //   style: Theme.of(context).textTheme.subtitle2,
-                    // ),
-                    // const SizedBox(height: defaultPadding / 2),
-                    // Row(
-                    //   children: const [
-                    //     ColorDot(
-                    //       color: Color(0xFFBEE8EA),
-                    //       isActive: false,
-                    //     ),
-                    //     ColorDot(
-                    //       color: Color(0xFF141B4A),
-                    //       isActive: true,
-                    //     ),
-                    //     ColorDot(
-                    //       color: Color(0xFFF4E5C3),
-                    //       isActive: false,
-                    //     ),
-                    //   ],
-                    // ),
-                    const SizedBox(height: defaultPadding * 2),
+
+                    const SizedBox(height: SizeConstants.defaultPadding * 2),
                     Center(
                       child: SizedBox(
                         width: 200,
@@ -178,7 +164,7 @@ class DetailsScreen extends StatelessWidget {
                                   width: 10,
                                 ),
                                 SvgPicture.asset(
-                                  "assets/icons/shopping-cart.svg",
+                                  AssetsConstants.cartSvg,
                                   width: 20,
                                   color: Colors.white,
                                 ),

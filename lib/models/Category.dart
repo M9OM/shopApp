@@ -1,3 +1,5 @@
+import '../common/constant/assets_constants.dart';
+
 class Category {
   final String icon, title;
 
@@ -6,19 +8,19 @@ class Category {
 
 List<Category> demo_categories = [
   Category(
-    icon: "assets/icons/pen.png",
+    icon: AssetsConstants.penPng,
     title: "اقلام",
   ),
   Category(
-    icon: "assets/icons/paper.png",
+    icon:AssetsConstants.paperPng,
     title: "اوراق",
   ),
   Category(
-    icon: "assets/icons/note.png",
+    icon: AssetsConstants.notePng,
     title: "دفاتر",
   ),
   Category(
-    icon: "assets/icons/package.png",
+    icon:AssetsConstants.packagePng,
     title: "تغليف",
   ),
 ];

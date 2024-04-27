@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import '../../../../common/constant/size_constants.dart';
+import '../../../theme/custom_colors.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -12,7 +13,7 @@ class ProductCard extends StatelessWidget {
   }) : super(key: key);
   final String  title;
   final VoidCallback press;
-  final int price;
+  final double price;
   final List<String> image;
 
   @override
@@ -21,10 +22,10 @@ class ProductCard extends StatelessWidget {
       onTap: press,
       child: Container(
         width: 154,
-        padding: const EdgeInsets.all(defaultPadding / 2),
+        padding: const EdgeInsets.all(SizeConstants.defaultPadding / 2),
         decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius)),
+          borderRadius: BorderRadius.all(Radius.circular(SizeConstants.defaultBorderRadius)),
         ),
         child: Column(
           children: [
@@ -33,15 +34,15 @@ class ProductCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: bgColorCard,
                 borderRadius: const BorderRadius.all(
-                    Radius.circular(defaultBorderRadius)),
+                    Radius.circular(SizeConstants.defaultBorderRadius)),
               ),
-              child: Image.asset(
+              child: Image.network(
                 image[0],
                 fit: BoxFit.cover,
                 height: 132,
               ),
             ),
-            const SizedBox(height: defaultPadding / 2),
+            const SizedBox(height: SizeConstants.defaultPadding / 2),
             Row(
               children: [
                 Expanded(
@@ -50,7 +51,7 @@ class ProductCard extends StatelessWidget {
                     style: const TextStyle(color: Colors.black),
                   ),
                 ),
-                const SizedBox(width: defaultPadding / 4),
+                const SizedBox(width: SizeConstants.defaultPadding / 4),
                 Text(
                  price.toString()+ " ريال"  ,
                   style: Theme.of(context).textTheme.subtitle2,

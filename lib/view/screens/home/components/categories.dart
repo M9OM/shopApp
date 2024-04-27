@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish/models/Category.dart';
 
-import '../../../constants.dart';
+import '../../../../common/constant/size_constants.dart';
 
 class Categories extends StatelessWidget {
   const Categories({
@@ -23,7 +23,7 @@ class Categories extends StatelessWidget {
           press: () {},
         ),
         separatorBuilder: (context, index) =>
-            const SizedBox(width: defaultPadding),
+            const SizedBox(width: SizeConstants.defaultPadding),
       ),
     );
   }
@@ -46,16 +46,16 @@ class CategoryCard extends StatelessWidget {
       onPressed: press,
       style: OutlinedButton.styleFrom(
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius)),
+          borderRadius: BorderRadius.all(Radius.circular(SizeConstants.defaultBorderRadius)),
         ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(
-            vertical: defaultPadding / 2, horizontal: defaultPadding / 4),
+            vertical: SizeConstants.defaultPadding / 2, horizontal: SizeConstants.defaultPadding / 4),
         child: Column(
           children: [
             Image.asset(icon,width: 35,),
-            const SizedBox(height: defaultPadding / 2),
+            const SizedBox(height: SizeConstants.defaultPadding / 2),
             Text(
               title,
               style: Theme.of(context).textTheme.subtitle2,

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:stylish/constants.dart';
+import 'package:stylish/common/constant/size_constants.dart';
 import 'package:stylish/provider/cartProvider.dart';
-import 'package:stylish/screens/home/home_screen.dart';
+import 'package:stylish/view/screens/home/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'view/theme/custom_colors.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -15,7 +16,7 @@ void main() async {
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => CartProvider()),
-  ], child: MyApp()));
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: bgColor,
-        dividerColor: Color.fromARGB(255, 202, 202, 202),
+        dividerColor: const Color.fromARGB(255, 202, 202, 202),
         primarySwatch:
             black, // Here, you need to use a valid color from Colors class
         fontFamily: "eg_ar",
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       supportedLocales: [
-        Locale('ar', 'AR'), // Arabic
+        const Locale('ar', 'AR'), // Arabic
       ],
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
         // If the device locale is not supported, use the first one from the list (English)
         return supportedLocales.first;
       },
-      home: const HomeScreen(),
+      home:  HomeScreen(),
     );
   }
 }

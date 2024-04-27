@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants.dart';
+import '../../../../common/constant/size_constants.dart';
+import '../../../theme/custom_colors.dart';
 
 class ProductAtCart extends StatelessWidget {
   const ProductAtCart({
@@ -16,7 +17,7 @@ class ProductAtCart extends StatelessWidget {
   }) : super(key: key);
   final  title;
   final VoidCallback press;
-  final int price;
+  final double price;
   final int? countItemOrder;
   final Function remove;
   final Function addItem;
@@ -29,29 +30,29 @@ class ProductAtCart extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Container(
-        padding: const EdgeInsets.all(defaultPadding / 2),
+        padding: const EdgeInsets.all(SizeConstants.defaultPadding / 2),
         decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius)),
+          borderRadius: BorderRadius.all(Radius.circular(SizeConstants.defaultBorderRadius)),
         ),
         child: Row(
           children: [
             Container(
               width: 100, // Adjust the width of the image container as needed
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: bgColor,
-                borderRadius: const BorderRadius.all(
-                    Radius.circular(defaultBorderRadius)),
+                borderRadius: BorderRadius.all(
+                    Radius.circular(SizeConstants.defaultBorderRadius)),
               ),
-              child: Image.asset(
+              child: Image.network(
                 image[0],
-                fit: BoxFit.cover,
-                height: 132,
+                fit: BoxFit.fitWidth,
+                height: 100,
               ),
             ),
             const SizedBox(
                 width:
-                    defaultPadding / 2), // Add spacing between image and text
+                    SizeConstants.defaultPadding / 2), // Add spacing between image and text
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,10 +75,10 @@ class ProductAtCart extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () => remove(),
-                          child: Icon(
+                          child: const Icon(
                             Icons.remove,
                             size: 20,
                           ),
@@ -96,10 +97,10 @@ class ProductAtCart extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () => addItem(),
-                          child: Icon(Icons.add, size: 20),
+                          child: const Icon(Icons.add, size: 20),
                         ),
                       ),
                     ],

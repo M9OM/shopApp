@@ -3,7 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:stylish/provider/cartProvider.dart';
 
-import '../../../constants.dart';
+import '../../../../common/constant/assets_constants.dart';
+import '../../../../common/constant/size_constants.dart';
 
 
 const OutlineInputBorder outlineInputBorder = OutlineInputBorder(
@@ -36,11 +37,11 @@ class SearchForm extends StatelessWidget {
               errorBorder: outlineInputBorder,
               prefixIcon: Padding(
                 padding: const EdgeInsets.all(14),
-                child: SvgPicture.asset("assets/icons/Search.svg"),
+                child: SvgPicture.asset(AssetsConstants.searchSvg),
               ),
               suffixIcon: Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: defaultPadding, vertical: defaultPadding / 2),
+                    horizontal: SizeConstants.defaultPadding, vertical: SizeConstants.defaultPadding / 2),
                 child: SizedBox(
                   width: 48,
                   height: 48,

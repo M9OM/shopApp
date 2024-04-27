@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stylish/models/Product.dart';
-import 'package:stylish/screens/details/details_screen.dart';
+import 'package:stylish/view/screens/details/details_screen.dart';
 import 'package:stylish/services/firebaseService.dart';
 
-import '../../../constants.dart';
+import '../../../../common/constant/size_constants.dart';
 import 'product_card.dart';
 import 'section_title.dart';
 
@@ -17,7 +17,7 @@ class StationeryProducts extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: defaultPadding),
+          padding: const EdgeInsets.symmetric(vertical: SizeConstants.defaultPadding),
           child: SectionTitle(
             title: "قرطاسيات",
             pressSeeAll: () {},
@@ -50,7 +50,7 @@ FutureBuilder<List<Product>>(
           children: List.generate(
             products.length,
             (index) => Padding(
-              padding: const EdgeInsets.only(right: defaultPadding),
+              padding: const EdgeInsets.only(right: SizeConstants.defaultPadding),
               child: ProductCard(
                 title: products[index].title.toString(),
                 image: products[index].image,

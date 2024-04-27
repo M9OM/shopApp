@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:stylish/constants.dart';
+import 'package:stylish/common/constant/assets_constants.dart';
+import 'package:stylish/common/constant/size_constants.dart';
 import 'package:stylish/provider/cartProvider.dart';
-import 'package:stylish/screens/cart/cart_screen.dart';
-import 'package:stylish/screens/details/details_screen.dart';
+import 'package:stylish/view/layouts/app_drawer.dart';
+import 'package:stylish/view/screens/cart/cart_screen.dart';
+import 'package:stylish/view/screens/details/details_screen.dart';
 
 import 'components/categories.dart';
 import 'components/product_card.dart';
@@ -17,23 +19,30 @@ import 'components/books.dart';
 import 'components/search_form.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+  HomeScreen({Key? key}) : super(key: key);
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  void _openDrawer() {
+    _scaffoldKey.currentState?.openDrawer();
+  }
   @override
   Widget build(BuildContext context) {
     return Consumer<CartProvider>(builder: (context, cardProvider, child) {
       return Scaffold(
+        key: _scaffoldKey,
+        drawer: AppDrawer(),
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/icons/menu.svg"),
+            onPressed: () {
+              _openDrawer();
+            },
+            icon: SvgPicture.asset(AssetsConstants.menuSvg),
           ),
           actions: [
             Stack(
               children: [
                 IconButton(
                   icon: Stack(children: [
-                    SvgPicture.asset("assets/icons/shopping-cart.svg")
+                    SvgPicture.asset(AssetsConstants.cartSvg)
                   ]),
                   onPressed: () {
                     Navigator.push(
@@ -62,7 +71,7 @@ class HomeScreen extends StatelessWidget {
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
-          padding: const EdgeInsets.all(defaultPadding),
+          padding: const EdgeInsets.all(SizeConstants.defaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -78,7 +87,8 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 18),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: defaultPadding),
+                padding: EdgeInsets.symmetric(
+                    vertical: SizeConstants.defaultPadding),
                 child: SearchForm(),
               ),
               cardProvider.itemsSearched.length != 0
@@ -102,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                                     cardProvider.itemsSearched.length,
                                     (index) => Padding(
                                       padding: const EdgeInsets.only(
-                                          right: defaultPadding),
+                                          right: SizeConstants.defaultPadding),
                                       child: ProductCard(
                                         title: cardProvider
                                             .itemsSearched[index].title,
