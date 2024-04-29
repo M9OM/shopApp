@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:stylish/common/constant/size_constants.dart';
-import 'package:stylish/provider/cartProvider.dart';
-import 'package:stylish/view/screens/home/home_screen.dart';
+import 'package:stylish/app/provider/cartProvider.dart';
+import 'package:stylish/app/view/screens/home/home_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'view/theme/custom_colors.dart';
+import 'app/controller/page_controller.dart';
+import 'app/core/theme/custom_colors.dart';
+import 'app/view/screens/main_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize Firebase
   await Firebase.initializeApp();
 
-  runApp(MultiProvider(providers: [
+  runApp(MultiProvider(
+    providers: [
     ChangeNotifierProvider(create: (_) => CartProvider()),
+    ChangeNotifierProvider(create: (_) => PageControllerModel()),
+
+
+
   ], child: const MyApp()));
 }
 
@@ -60,7 +66,7 @@ class MyApp extends StatelessWidget {
         // If the device locale is not supported, use the first one from the list (English)
         return supportedLocales.first;
       },
-      home:  HomeScreen(),
+      home: MainScreen(),
     );
   }
 }
