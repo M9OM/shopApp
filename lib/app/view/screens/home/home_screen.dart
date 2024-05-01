@@ -14,61 +14,19 @@ import 'package:stylish/app/view/screens/details/details_screen.dart';
 
 import 'components/categories.dart';
 import 'components/product_card.dart';
+import 'components/recentlyProducts.dart';
 import 'components/resulte_search.dart';
 import 'components/stationeryProducts.dart';
-import 'components/books.dart';
 import 'components/search_form.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  void _openDrawer() {
-    _scaffoldKey.currentState?.openDrawer();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<CartProvider>(builder: (context, cardProvider, child) {
       return Scaffold(
-        key: _scaffoldKey,
         drawer: const AppDrawer(),
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              _openDrawer();
-            },
-            icon: SvgPicture.asset(AssetsConstants.menuSvg),
-          ),
-          actions: [
-            Stack(
-              children: [
-                IconButton(
-                  icon: Stack(
-                      children: [SvgPicture.asset(AssetsConstants.cartSvg)]),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CartScreen(),
-                        ));
-                  },
-                ),
-                Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: const BoxDecoration(
-                      color: Colors.red, shape: BoxShape.circle),
-                  child: Text(
-                    cardProvider.productCardList.length.toString(),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(
               parent: AlwaysScrollableScrollPhysics()),
@@ -89,14 +47,15 @@ class HomeScreen extends StatelessWidget {
                     vertical: SizeConstants.defaultPadding),
                 child: SearchForm(),
               ),
-              cardProvider.itemsSearched.length != 0
+              cardProvider.itemsSearched.isNotEmpty
                   ? Resulte_Scacrh()
                   : const SizedBox(),
               const Categories(),
               const StationeryProducts(),
+              const RecentlyProduct(),
               // const BooksProducts(),
               const SizedBox(
-                height: 20,
+                height: 150,
               )
             ],
           ),

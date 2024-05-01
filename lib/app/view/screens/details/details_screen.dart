@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:stylish/app/core/common/constants/assets_constants.dart';
@@ -9,6 +11,8 @@ import '../../../provider/cartProvider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../core/theme/custom_colors.dart';
+import '../home/components/recentlyProducts.dart';
+import '../home/components/stationeryProducts.dart';
 
 class DetailsScreen extends StatelessWidget {
   DetailsScreen({Key? key, required this.product}) : super(key: key);
@@ -53,7 +57,7 @@ class DetailsScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: Column(
+        body: ListView(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -74,31 +78,31 @@ class DetailsScreen extends StatelessWidget {
                     }),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SmoothPageIndicator(
-                controller: _controller,
-                count: product.image.length,
-                              effect: const SlideEffect(
-                  activeDotColor: Colors.black,
-                  dotColor: Colors.grey,
-                  type : SlideType.slideUnder
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SmoothPageIndicator(
+                  controller: _controller,
+                  count: product.image.length,
+                  effect: const SlideEffect(
+                      activeDotColor: Colors.black,
+                      dotColor: Colors.grey,
+                      type: SlideType.slideUnder),
                 ),
-              
-                
               ),
             ),
             const SizedBox(height: SizeConstants.defaultPadding * 1.5),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.fromLTRB(SizeConstants.defaultPadding,
-                    SizeConstants.defaultPadding * 2, SizeConstants.defaultPadding, SizeConstants.defaultPadding),
+                padding: const EdgeInsets.fromLTRB(
+                    SizeConstants.defaultPadding,
+                    SizeConstants.defaultPadding * 2,
+                    SizeConstants.defaultPadding,
+                    SizeConstants.defaultPadding),
                 decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(SizeConstants.defaultBorderRadius * 3),
-                    topRight: Radius.circular(SizeConstants.defaultBorderRadius * 3),
-                  ),
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(SizeConstants.defaultBorderRadius * 3)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,13 +123,12 @@ class DetailsScreen extends StatelessWidget {
                       ],
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: SizeConstants.defaultPadding),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: SizeConstants.defaultPadding),
                       child: Text(
                         product.details,
                       ),
                     ),
-
                     const SizedBox(height: SizeConstants.defaultPadding * 2),
                     Center(
                       child: SizedBox(
@@ -133,21 +136,7 @@ class DetailsScreen extends StatelessWidget {
                         height: 48,
                         child: ElevatedButton(
                           onPressed: () {
-                            cardProvider.addToCart(product);
-                            const snackBar = SnackBar(
-                              content: Row(
-                                children: [
-                                  Icon(Icons.check_circle,
-                                      color: Colors.green), // Add icon here
-                                  SizedBox(
-                                      width:
-                                          10), // Add spacing between icon and text
-                                  Text('لقد تم اضافة السلعة في السلة!'),
-                                ],
-                              ),
-                            );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
+                            cardProvider.addToCart(product, context);
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: primaryColor,
@@ -175,7 +164,11 @@ class DetailsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const RecentlyProduct(),
+              ),
           ],
         ),
       );

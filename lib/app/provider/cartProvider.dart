@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:stylish/app/services/firebaseService.dart';
 import '../models/Product.dart';
 
@@ -9,12 +10,28 @@ class CartProvider with ChangeNotifier {
   final List<Product> _itemsSearched = [];
   List<Product> get productCardList => _productCardList;
   List<Product> get itemsSearched => _itemsSearched;
+ 
+
   CartProvider() {
     fetchProducts();
   }
 
-  void addToCart(Product productCardList) {
+  void addToCart(Product productCardList, BuildContext context) {
+
     _productCardList.add(productCardList);
+
+
+
+    const snackBar = SnackBar(
+      content: Row(
+        children: [
+          Icon(Icons.check_circle, color: Colors.green), // Add icon here
+          SizedBox(width: 10), // Add spacing between icon and text
+          Text('لقد تم اضافة السلعة في السلة!'),
+        ],
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
     notifyListeners();
   }

@@ -13,5 +13,9 @@ static const String penPng = "$path/pen.png";
 static const String packagePng = "$path/package.png";
 static const String logoPng = "$path/logo.png";
 static const String settingsSvg = "$path/settings.svg";
+static const String cartAddSvg = "$path/shopping-cart-add.svg";
+static const String houseSvg = "$path/house-blank.svg";
+static const String houseFillSvg = "$path/house-fill.svg";
+static const String cartEmpteySvg = "$path/cart-arrow-down.svg";
 
 }

@@ -7,6 +7,7 @@ class Product {
   final double price;
   final int? countItemOrder;
   final List<String> image;
+  final bool available;
 
   Product({
     required this.id,
@@ -15,7 +16,7 @@ class Product {
     required this.price,
     required this.category,
     required this.countItemOrder,
-    required this.details,
+    required this.details, required this.available,
   });
 
   factory Product.fromFirestore(Map<String, dynamic> data, String id) {
@@ -27,6 +28,7 @@ class Product {
       countItemOrder: data['countItemOrder'] ?? 9,
       details: data['details'],
       category: data['category'] ?? '',
+      available:data['available'],
     );
   }
 
@@ -38,6 +40,7 @@ class Product {
       'price': price.toDouble(),
       'countItemOrder': countItemOrder,
       'details': details,
+      'available':available
     };
   }
 }

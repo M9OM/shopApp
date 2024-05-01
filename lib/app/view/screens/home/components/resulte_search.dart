@@ -50,7 +50,8 @@ class Resulte_Scacrh extends StatelessWidget {
                                                                     .itemsSearched[
                                                                 index]),
                                                   ));
-                                            },
+                                            }, available: cardProvider
+                                                .itemsSearched[index].available,
                                           ),
                                         ),
                                       ),

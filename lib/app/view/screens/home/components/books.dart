@@ -46,6 +46,7 @@ class BooksProducts extends StatelessWidget {
                       title: products[index].title,
                       image: products[index].image,
                       price: products[index].price,
+                      available: products[index].available,
                       press: () {},
                     ),
                   ),

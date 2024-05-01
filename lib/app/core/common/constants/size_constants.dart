@@ -22,4 +22,8 @@ class SizeConstants {
   static const largeText = 18.0;
   static const midText = 16.0;
   static const smallText = 14.0;
+
+// d
+static const Duration defaultDuration = Duration(microseconds: 300);
+
 }

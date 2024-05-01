@@ -16,24 +16,38 @@ class BottomNaviation extends StatelessWidget {
     return SafeArea(
       child: Padding(
           child: Container(
-            decoration: BoxDecoration(
-                color: primaryColor, borderRadius: BorderRadius.circular(20)),
+            padding: const EdgeInsets.all(12),
+            margin: const EdgeInsets.symmetric(horizontal: 24),
+            height: 56,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                  color: primaryColor.withOpacity(0.5),
+                  offset: Offset(0, 20),
+                  blurRadius: 20)
+            ], color: primaryColor, borderRadius: BorderRadius.circular(20)),
             child: Consumer<PageControllerModel>(
-              builder: (context,pageModel,child) {
-                double? selected = pageModel.pageController.page;
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    BottomNavWidget(onTap: () {pageModel.changePage(0);}, svgIcon:selected==0? AssetsConstants.notificationSvg:AssetsConstants.settingsSvg),
-                    BottomNavWidget(onTap: () {pageModel.changePage(1);}, svgIcon: AssetsConstants.settingsSvg),
-                    // BottomNavWidget(onTap: () {pageModel.changePage(2);}, svgIcon: AssetsConstants.personSvg),
-                    // BottomNavWidget(onTap: () {pageModel.changePage(3);}, svgIcon: AssetsConstants.cartSvg),
-                  ],
-                );
-              }
-            ),
-            padding: const EdgeInsets.all(15),
-            margin: const EdgeInsets.symmetric(horizontal: 10),
+                builder: (context, pageModel, child) {
+              int selected = pageModel.currentPageIndex;
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  BottomNavWidget(
+                      onTap: () {
+                        pageModel.changePage(0);
+                      },
+                      svgIcon: selected == 0
+                          ? AssetsConstants.houseFillSvg
+                          : AssetsConstants.houseSvg),
+                  BottomNavWidget(
+                      onTap: () {
+                        pageModel.changePage(1);
+                      },
+                      svgIcon: AssetsConstants.settingsSvg),
+                  // BottomNavWidget(onTap: () {pageModel.changePage(2);}, svgIcon: AssetsConstants.personSvg),
+                  // BottomNavWidget(onTap: () {pageModel.changePage(3);}, svgIcon: AssetsConstants.cartSvg),
+                ],
+              );
+            }),
           ),
           padding: const EdgeInsets.all(10)),
     );

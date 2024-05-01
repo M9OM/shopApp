@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:stylish/app/core/common/constants/assets_constants.dart';
 import 'package:stylish/app/models/Product.dart';
 import 'package:stylish/app/provider/cartProvider.dart';
 import 'package:stylish/app/view/screens/cart/components/product_cart.dart';
@@ -38,9 +40,9 @@ class CartScreen extends StatelessWidget {
               ),
             ],
           ),
-          body: Column(
+          body:           cardProvider.productCardList.isNotEmpty?  Column(
             children: [
-              Expanded(
+  Expanded(
                 flex: 10,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
@@ -79,7 +81,7 @@ class CartScreen extends StatelessWidget {
                             );
                           },
                           addItem: () {
-                            cardProvider.addToCart(item);
+                            cardProvider.addToCart(item, context);
                           },
                         ),
                       );
@@ -131,7 +133,15 @@ class CartScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
             ],
-          ),
+          ):Center(child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('سلتك فارغة',style: Theme.of(context).textTheme.titleMedium,),
+              SizedBox(width: 20,),
+                            SvgPicture.asset(AssetsConstants.cartEmpteySvg),
+
+            ],
+          ))
         );
       },
     );

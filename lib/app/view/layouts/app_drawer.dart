@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stylish/app/core/common/constants/assets_constants.dart';
+import 'package:stylish/app/core/theme/custom_colors.dart';
 import 'package:stylish/app/models/drawer_models.dart';
 
 // ignore: must_be_immutable
@@ -12,6 +13,7 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: bgColor,
       child: ListView(
     children: [
       DrawerHeader(

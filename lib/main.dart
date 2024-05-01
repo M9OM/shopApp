@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'app/controller/page_controller.dart';
 import 'app/core/theme/custom_colors.dart';
+import 'app/provider/recently_browsed_provider.dart';
 import 'app/view/screens/main_screen.dart';
 
 void main() async {
@@ -19,6 +20,10 @@ void main() async {
     providers: [
     ChangeNotifierProvider(create: (_) => CartProvider()),
     ChangeNotifierProvider(create: (_) => PageControllerModel()),
+    ChangeNotifierProvider(create: (_) => RecentlyBrowsed()),
+
+
+    
 
 
 
