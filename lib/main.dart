@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:stylish/app/provider/cartProvider.dart';
-import 'package:stylish/app/view/screens/home/home_screen.dart';
+import 'package:stylish/provider/cartProvider.dart';
+import 'package:stylish/view/screens/home/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'app/controller/page_controller.dart';
-import 'app/core/theme/custom_colors.dart';
-import 'app/provider/recently_browsed_provider.dart';
-import 'app/view/screens/main_screen.dart';
+import 'controller/page_controller.dart';
+import 'core/theme/custom_colors.dart';
+import 'provider/recently_browsed_provider.dart';
+import 'view/screens/main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
