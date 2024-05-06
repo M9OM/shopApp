@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish/controller/categories_controller.dart';
 import 'package:stylish/models/Category.dart';
+import 'package:stylish/view/screens/product_list/product_list.dart';
 
+import '../../../../controller/home_controller.dart';
 import '../../../../core/common/constants/size_constants.dart';
+import '../../../../models/Product.dart';
 
 class Categories extends StatelessWidget {
-  const Categories({
+  Categories({
     Key? key,
   }) : super(key: key);
+
+  final CategoriesController controller = CategoriesController();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,10 @@ class Categories extends StatelessWidget {
       children: [
         const Text(
           "تصنيفات",
-          style: TextStyle(fontSize: 18, color: Colors.white, ),
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
         ),
         SizedBox(
           height: 100,
@@ -27,7 +36,16 @@ class Categories extends StatelessWidget {
             itemBuilder: (context, index) => CategoryCard(
               icon: demo_categories[index].icon,
               title: demo_categories[index].title,
-              press: () {},
+              collection: demo_categories[index].collection,
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ProductList(future: controller.fetchProducts(demo_categories[index].collection)),
+                  ),
+                );
+              },
             ),
             separatorBuilder: (context, index) =>
                 const SizedBox(width: SizeConstants.defaultPadding),
@@ -44,9 +62,10 @@ class CategoryCard extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.press,
+    required this.collection,
   }) : super(key: key);
 
-  final String icon, title;
+  final String icon, title, collection;
   final VoidCallback press;
 
   @override

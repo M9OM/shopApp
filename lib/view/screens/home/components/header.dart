@@ -37,31 +37,31 @@ class Header extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            MyAppbar(),
+            const MyAppbar(),
             Container(
-              padding: EdgeInsets.all(20),
-              child: const Column(
+              padding: const EdgeInsets.all(20),
+              child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "زاد",
                     style: TextStyle(
                         fontSize: 40,
                         color: Colors.white,
                         fontWeight: FontWeight.w700),
                   ),
-                  Text(
+                  const Text(
                     "قم بالتسوق في زاد و التوصيل لحد باب بيتك!",
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.white,
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(
                         vertical: SizeConstants.defaultPadding),
                     child: SearchForm(),

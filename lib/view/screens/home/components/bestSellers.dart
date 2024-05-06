@@ -23,7 +23,7 @@ class BestSellersProducts extends StatefulWidget {
 }
 
 class _BestSellersProductsState extends State<BestSellersProducts> {
-  final HomeController controller = HomeController();
+  final ProductController controller = ProductController();
   late Future<List<Product>> _future;
 @override
   void initState() {
@@ -98,7 +98,7 @@ class _BestSellersProductsState extends State<BestSellersProducts> {
                                       DetailsScreen(product: products[index]),
                                 ),
                               );
-                            },
+                            }, products: products[index],
                           );
                         });
                       }),

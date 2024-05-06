@@ -46,7 +46,7 @@ class CartProvider with ChangeNotifier {
   }
 
   Future<void> fetchProducts() async {
-    _items = await HomeController().fetchProducts();
+    _items = await ProductController().fetchProducts();
     notifyListeners();
   }
 

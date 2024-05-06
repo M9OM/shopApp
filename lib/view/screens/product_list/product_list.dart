@@ -7,12 +7,13 @@ import 'package:flexible_grid_view/flexible_grid_view.dart';
 
 import '../../../models/Product.dart';
 import '../../../provider/cartProvider.dart';
+import '../details/details_screen.dart';
 
 // ignore: must_be_immutable
 class ProductList extends StatelessWidget {
-  ProductList({Key? key,  this.future}) : super(key: key);
+  ProductList({Key? key, this.future}) : super(key: key);
 
-Future<List<Product>>? future;
+  Future<List<Product>>? future;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,34 +30,64 @@ Future<List<Product>>? future;
             FutureBuilder<List<Product>>(
               future: future!,
               builder: (context, snapshot) {
-              List<Product> products = snapshot.data!;
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: InkWell(
+                      onTap: () => print(snapshot.error),
+                      child: Text('Error: ${snapshot.error}'),
+                    ),
+                  );
+                } else if (snapshot.data == null) {
+                  return const Center(
+                    child: Text('No data available'),
+                  );
+                }
+                List<Product> products = snapshot.data!;
+
                 return Expanded(
                   // Wrap GridView.builder with Expanded
                   child: GridView.builder(
                     itemCount: products.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, childAspectRatio: 0.7),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, childAspectRatio: 0.7),
                     itemBuilder: (context, index) {
                       return SizedBox(
                         width: 200,
                         child: Consumer<CartProvider>(
-                            builder: (context, cardProvider, child) {
-                          return ProductCard(
-                            image: products[index].image,
-                            title: products[index].title,
-                            price: products[index].price,
-                            press: () {},
-                            available: products[index].available,
-                            addCart: () {
-                              cardProvider.addToCart(products[index], context);
-                            },
-                          );
-                        }),
+                          builder: (context, cardProvider, child) {
+                            return ProductCard(
+                              products: products[index],
+                              addCart: () {
+                                cardProvider.addToCart(
+                                    products[index], context);
+                              },
+                              title: products[index].title.toString(),
+                              image: products[index].image,
+                              price: products[index].price.toDouble(),
+                              available: products[index].available,
+                              press: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailsScreen(
+                                      product: products[index],
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
                       );
                     },
                   ),
                 );
-              }
+              },
             ),
           ],
         ),

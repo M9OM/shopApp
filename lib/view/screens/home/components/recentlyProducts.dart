@@ -51,12 +51,12 @@ class RecentlyProduct extends StatelessWidget {
                         addCart: () {
                           cardProvider.addToCart(products[index], context);
                         },
+                        products: products[index],
                         title: products[index].title.toString(),
                         image: products[index].image,
                         price: products[index].price.toDouble(),
                         available: products[index].available,
                         press: () {
-                          recentlyBrowsed.addToRecentliy(products[index]);
 
                           Navigator.push(
                             context,
