@@ -13,23 +13,25 @@ class MyAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CartProvider>(builder: (context, cardProvider, child) {
       return InkWell(
-                        onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CartScreen(),
-                      ));
-                },
-
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const CartScreen(),
+              ));
+        },
         child: Container(
           padding: EdgeInsets.all(10),
           child: Stack(
-            alignment : AlignmentDirectional.topStart,
+            alignment: AlignmentDirectional.topStart,
             children: [
               InkWell(
                 child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: SvgPicture.asset(AssetsConstants.cartSvg,color: Colors.white,)),
+                    padding: EdgeInsets.all(10),
+                    child: SvgPicture.asset(
+                      AssetsConstants.cartSvg,
+                      color: Colors.white,
+                    )),
               ),
               Container(
                 padding: const EdgeInsets.all(6),
@@ -38,10 +40,7 @@ class MyAppbar extends StatelessWidget {
                 child: Text(
                   cardProvider.productCardList.length.toString(),
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 10
-                  ),
+                  style: const TextStyle(color: Colors.white, fontSize: 10),
                 ),
               ),
             ],

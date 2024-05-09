@@ -32,9 +32,27 @@ class CartScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     padding: const EdgeInsets.all(5),
-                    child: const Text(
-                      'دفع >',
-                      style: TextStyle(color: Colors.white),
+                    child: InkWell(
+                      onTap: () {
+
+
+                            const snackBar = SnackBar(
+      content: Row(
+        children: [
+          Icon(Icons.check_circle, color: Colors.green), // Add icon here
+          SizedBox(width: 10), // Add spacing between icon and text
+          Text('تم ايصال طلبك، سنقوم بتواصل معك'),
+        ],
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    
+cardProvider.clearList();
+                      },
+                      child: const Text(
+                        'دفع >',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ),

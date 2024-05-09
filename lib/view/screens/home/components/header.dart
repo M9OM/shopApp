@@ -7,8 +7,7 @@ import 'categories.dart';
 import '../../../layouts/search_form.dart';
 
 class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
-
+   Header({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -54,18 +53,18 @@ class Header extends StatelessWidget {
                         color: Colors.white,
                         fontWeight: FontWeight.w700),
                   ),
-                  const Text(
-                    "قم بالتسوق في زاد و التوصيل لحد باب بيتك!",
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: SizeConstants.defaultPadding),
-                    child: SearchForm(),
-                  ),
+                  // const Text(
+                  //   "قم بالتسوق في زاد و التوصيل لحد باب بيتك!",
+                  //   style: TextStyle(
+                  //     fontSize: 15,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(
+                  //       vertical: SizeConstants.defaultPadding),
+                  //   child: SearchForm(),
+                  // ),
                   Categories(),
                 ],
               ),

@@ -18,7 +18,12 @@ static const String houseSvg = "$path/house-blank.svg";
 static const String houseFillSvg = "$path/house-fill.svg";
 static const String cartEmpteySvg = "$path/cart-arrow-down.svg";
 static const String toolsPng = "$path/painting-brush.png";
-
 static const String eduPng = "$path/presentation.png";
+static const String logOutSvg = "$path/log-in-outline.svg";
+static const String heartSvg = "$path/heart1.svg";
+static const String trashSvg = "$path/trash.svg";
+
+
+
 
 }

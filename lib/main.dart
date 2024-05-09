@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'controller/page_controller.dart';
 import 'core/theme/custom_colors.dart';
 import 'provider/recently_browsed_provider.dart';
+import 'view/screens/auth/login/login_screen.dart';
 import 'view/screens/main_screen.dart';
 
 void main() async {
@@ -16,17 +17,10 @@ void main() async {
   // Initialize Firebase
   await Firebase.initializeApp();
 
-  runApp(MultiProvider(
-    providers: [
+  runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => CartProvider()),
     ChangeNotifierProvider(create: (_) => PageControllerModel()),
     ChangeNotifierProvider(create: (_) => RecentlyBrowsed()),
-
-
-    
-
-
-
   ], child: const MyApp()));
 }
 
@@ -52,10 +46,10 @@ class MyApp extends StatelessWidget {
           bodyText2: TextStyle(color: Colors.black54),
         ),
       ),
-      supportedLocales: [
-        const Locale('ar', 'AR'), // Arabic
+      supportedLocales: const [
+        Locale('ar', 'AR'), // Arabic
       ],
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

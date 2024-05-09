@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:stylish/models/Product.dart';
 import 'package:stylish/view/screens/details/details_screen.dart';
-import 'package:stylish/services/firebaseService.dart';
-
 import '../../../../core/common/constants/size_constants.dart';
 import '../../../../provider/cartProvider.dart';
 import '../../../../provider/recently_browsed_provider.dart';

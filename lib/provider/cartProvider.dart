@@ -1,11 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:stylish/services/firebaseService.dart';
 import '../controller/home_controller.dart';
 import '../models/Product.dart';
 
 class CartProvider with ChangeNotifier {
-  final FirebaseServices _firebaseServices = FirebaseServices();
   List<Product> _items = [];
   final List<Product> _productCardList = [];
   final List<Product> _itemsSearched = [];
@@ -33,6 +31,11 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void clearList() {
+    _productCardList.clear();
+
+    notifyListeners();
+  }
   void removeProduct(Product productCardList) {
     _productCardList.remove(productCardList);
 

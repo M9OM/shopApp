@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:stylish/controller/MenuAppController.dart';
 import 'package:stylish/controller/page_controller.dart';
 import 'package:stylish/view/screens/cart/cart_screen.dart';
 import 'package:stylish/view/screens/home/home_screen.dart';
@@ -10,6 +9,7 @@ import '../../provider/cartProvider.dart';
 import '../layouts/app_drawer.dart';
 import '../layouts/bottomNavigationBar/bottomNavWidget.dart';
 import '../layouts/bottomNavigationBar/bottomNavigation.dart';
+import 'profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> pages = [
     HomeScreen(),
     const CartScreen(),
-    const CartScreen(),
+    const ProfileScreen(),
     const CartScreen(),
   ];
 
@@ -103,13 +103,7 @@ class _MainScreenState extends State<MainScreen> {
               onItemTapped(0);
             },
           ),
-          BottomNavWidget(
-            svgIcon: AssetsConstants.settingsSvg,
-            isSelected: _selectedIndex == 1,
-            onTap: () {
-              onItemTapped(1);
-            },
-          ),
+
           BottomNavWidget(
             svgIcon: AssetsConstants.personSvg,
             isSelected: _selectedIndex == 2,
@@ -118,7 +112,7 @@ class _MainScreenState extends State<MainScreen> {
             },
           ),
           BottomNavWidget(
-            svgIcon: AssetsConstants.notificationSvg,
+            svgIcon: AssetsConstants.cartSvg,
             isSelected: _selectedIndex == 3,
             onTap: () {
               onItemTapped(3);

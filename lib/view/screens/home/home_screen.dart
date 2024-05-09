@@ -30,42 +30,42 @@ class HomeScreen extends StatelessWidget {
       return Scaffold(
         backgroundColor: Colors.indigoAccent,
         drawer: const AppDrawer(),
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics()),
-          child: Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                // Image.asset(
-                //   AssetsConstants.logoPng,
-                // ),
-         
-
-                Header(),
-                // cardProvider.itemsSearched.isNotEmpty
-                //     ? const Resulte_Scacrh()
-                //     : const SizedBox(),
-
-                Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20)),
-                      color: Colors.white),
-                  child: Column(
-                    children: [
-                      BestSellersProducts(),
-                      const RecentlyProduct(),
-                      // const BooksProducts(),
-                      const SizedBox(
-                        height: 140,
-                      )
-                    ],
-                  ),
+        body: Column( // Wrap the content with a Column widget
+          crossAxisAlignment: CrossAxisAlignment.stretch, // Adjust cross axis alignment
+          children: [
+            Expanded( // Place the Expanded widget here
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
                 ),
-              ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Header(),
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                        color: Colors.white,
+                      ),
+                      child: Column(
+                        children: [
+                          BestSellersProducts(),
+                          const RecentlyProduct(),
+                          const SizedBox(
+                            height: 140,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       );
     });

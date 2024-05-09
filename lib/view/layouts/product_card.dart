@@ -40,7 +40,7 @@ class ProductCard extends StatelessWidget {
           press();
         },
         child: Container(
-          width: 154,
+          width: 170,
           padding: const EdgeInsets.all(SizeConstants.defaultPadding / 2),
           decoration: const BoxDecoration(
             color: bgColorCard,
@@ -61,7 +61,7 @@ class ProductCard extends StatelessWidget {
                 child: Image.network(
                   image[0],
                   opacity: AlwaysStoppedAnimation(available ? 1 : 0.6),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                   height: 170,
                 ),
               ),

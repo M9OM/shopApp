@@ -72,7 +72,7 @@ class DetailsScreen extends StatelessWidget {
                         child: Image.network(
                           product.image[index],
                           height: MediaQuery.of(context).size.height * 0.4,
-                          fit: BoxFit.fitHeight,
+                          fit: BoxFit.contain,
                         ),
                       );
                     }),
