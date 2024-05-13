@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:stylish/core/common/constants/assets_constants.dart';
@@ -9,11 +7,8 @@ import 'package:stylish/models/Product.dart';
 import 'package:stylish/view/screens/cart/cart_screen.dart';
 import '../../../provider/cartProvider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../../core/theme/custom_colors.dart';
 import '../home/components/recentlyProducts.dart';
-import '../home/components/bestSellers.dart';
-
 class DetailsScreen extends StatelessWidget {
   DetailsScreen({Key? key, required this.product}) : super(key: key);
   PageController _controller = new PageController();
@@ -92,77 +87,75 @@ class DetailsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: SizeConstants.defaultPadding * 1.5),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(
-                    SizeConstants.defaultPadding,
-                    SizeConstants.defaultPadding * 2,
-                    SizeConstants.defaultPadding,
-                    SizeConstants.defaultPadding),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(SizeConstants.defaultBorderRadius * 3)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            product.title,
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                        ),
-                        const SizedBox(width: SizeConstants.defaultPadding),
-                        Text(
-                          product.price.toString() + " ريال",
+            Container(
+              padding: const EdgeInsets.fromLTRB(
+                  SizeConstants.defaultPadding,
+                  SizeConstants.defaultPadding * 2,
+                  SizeConstants.defaultPadding,
+                  SizeConstants.defaultPadding),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                    Radius.circular(SizeConstants.defaultBorderRadius * 3)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          product.title,
                           style: Theme.of(context).textTheme.headline6,
                         ),
-                      ],
+                      ),
+                      const SizedBox(width: SizeConstants.defaultPadding),
+                      Text(
+                        product.price.toString() + " ريال",
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: SizeConstants.defaultPadding),
+                    child: Text(
+                      product.details,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: SizeConstants.defaultPadding),
-                      child: Text(
-                        product.details,
+                  ),
+                  const SizedBox(height: SizeConstants.defaultPadding * 2),
+                  Center(
+                    child: SizedBox(
+                      width: 200,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          cardProvider.addToCart(product, context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            shape: const StadiumBorder()),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "اضافة الى السلة",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              SvgPicture.asset(
+                                AssetsConstants.cartSvg,
+                                width: 20,
+                                color: Colors.white,
+                              ),
+                            ]),
                       ),
                     ),
-                    const SizedBox(height: SizeConstants.defaultPadding * 2),
-                    Center(
-                      child: SizedBox(
-                        width: 200,
-                        height: 48,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            cardProvider.addToCart(product, context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: primaryColor,
-                              shape: const StadiumBorder()),
-                          child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  "اضافة الى السلة",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                SvgPicture.asset(
-                                  AssetsConstants.cartSvg,
-                                  width: 20,
-                                  color: Colors.white,
-                                ),
-                              ]),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
             Padding(

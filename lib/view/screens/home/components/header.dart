@@ -7,7 +7,8 @@ import 'categories.dart';
 import '../../../layouts/search_form.dart';
 
 class Header extends StatelessWidget {
-   Header({Key? key}) : super(key: key);
+  Header({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -42,7 +43,7 @@ class Header extends StatelessWidget {
             const MyAppbar(),
             Container(
               padding: const EdgeInsets.all(20),
-              child:  Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

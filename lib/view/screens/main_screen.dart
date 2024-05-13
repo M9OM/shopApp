@@ -19,28 +19,22 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
-  void controlMenu() {
-    if (!_scaffoldKey.currentState!.isDrawerOpen) {
-      _scaffoldKey.currentState!.openDrawer();
-    }
-  }
+
 
   int _selectedIndex = 0;
 
   final List<Widget> pages = [
     HomeScreen(),
-    const CartScreen(),
     const ProfileScreen(),
     const CartScreen(),
+
   ];
 
   @override
   Widget build(BuildContext context) {
     return Consumer<CartProvider>(builder: (context, cardProvider, child) {
       return Scaffold(
-        key: _scaffoldKey,
         drawer: const AppDrawer(),
         // appBar: AppBar(
         //   leading: IconButton(
@@ -106,16 +100,16 @@ class _MainScreenState extends State<MainScreen> {
 
           BottomNavWidget(
             svgIcon: AssetsConstants.personSvg,
-            isSelected: _selectedIndex == 2,
+            isSelected: _selectedIndex == 1,
             onTap: () {
-              onItemTapped(2);
+              onItemTapped(1);
             },
           ),
           BottomNavWidget(
             svgIcon: AssetsConstants.cartSvg,
-            isSelected: _selectedIndex == 3,
+            isSelected: _selectedIndex == 2,
             onTap: () {
-              onItemTapped(3);
+              onItemTapped(2);
             },
           ),
         ],

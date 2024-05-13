@@ -20,159 +20,150 @@ class CartScreen extends StatelessWidget {
         Set<Product> uniqueValues = cardProvider.productCardList.toSet();
 
         return Scaffold(
-            appBar: AppBar(
-              title: const Text('سلتي'),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    padding: const EdgeInsets.all(5),
-                    child: InkWell(
-                      onTap: () {
+          appBar: AppBar(
+            title: const Text('سلتي'),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: const EdgeInsets.all(5),
+                  child: InkWell(
+                    onTap: () {
+                      const snackBar = SnackBar(
+                        content: Row(
+                          children: [
+                            Icon(Icons.check_circle, color: Colors.green),
+                            SizedBox(width: 10),
+                            Text('تم ايصال طلبك، سنقوم بتواصل معك'),
+                          ],
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-
-                            const snackBar = SnackBar(
-      content: Row(
-        children: [
-          Icon(Icons.check_circle, color: Colors.green), // Add icon here
-          SizedBox(width: 10), // Add spacing between icon and text
-          Text('تم ايصال طلبك، سنقوم بتواصل معك'),
-        ],
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    
-cardProvider.clearList();
-                      },
-                      child: const Text(
-                        'دفع >',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      cardProvider.clearList();
+                    },
+                    child: const Text(
+                      'دفع >',
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
-              ],
-            ),
-            body: cardProvider.productCardList.isNotEmpty
-                ? ListView(
-                    children: [
-                      Expanded(
-                        flex: 10,
-                        child: SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            children: uniqueValues.map((item) {
-                              int count = cardProvider.productCardList
-                                  .where((value) => value == item)
-                                  .length;
+              ),
+            ],
+          ),
+          body: cardProvider.productCardList.isNotEmpty
+              ? Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          children: uniqueValues.map((item) {
+                            int count = cardProvider.productCardList
+                                .where((value) => value == item)
+                                .length;
 
-                              return Container(
-                                decoration: BoxDecoration(
-                                    border: Border(
-                                        bottom: BorderSide(
-                                            width: 0.5,
-                                            color: Theme.of(context)
-                                                .dividerColor))),
-                                child: ProductAtCart(
-                                  title: item.title,
-                                  image: item.image,
-                                  price: item.price,
-                                  countItemOrder: count,
-                                  remove: () {
-                                    cardProvider.removeProduct(item);
-                                  },
-                                  removeAll: () {
-                                    cardProvider.removeProductAll(item);
-                                  },
-                                  press: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => DetailsScreen(
-                                          product: item,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  addItem: () {
-                                    cardProvider.addToCart(item, context);
-                                  },
+                            return Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    width: 0.5,
+                                    color: Theme.of(context).dividerColor,
+                                  ),
                                 ),
-                              );
-                            }).toList(),
-                          ),
+                              ),
+                              child: ProductAtCart(
+                                title: item.title,
+                                image: item.image,
+                                price: item.price,
+                                countItemOrder: count,
+                                remove: () {
+                                  cardProvider.removeProduct(item);
+                                },
+                                removeAll: () {
+                                  cardProvider.removeProductAll(item);
+                                },
+                                press: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailsScreen(
+                                        product: item,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                addItem: () {
+                                  cardProvider.addToCart(item, context);
+                                },
+                              ),
+                            );
+                          }).toList(),
                         ),
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Container(
-                          color: Colors.grey[200],
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: SizeConstants.defaultPadding),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    ),
+                    Container(
+                      color: Colors.grey[200],
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: SizeConstants.defaultPadding,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'مجموع السلع:',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'المجموع:',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                              Text(
+                                'مجموع السلع:',
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'X' +
-                                        cardProvider.productCardList.length
-                                            .toString(),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "OMR " + cardProvider.getPrice().toStringAsFixed(2),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                              Text(
+                                'المجموع:',
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
-                        ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'X' + cardProvider.productCardList.length.toString(),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "OMR " + cardProvider.getPrice().toStringAsFixed(2),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 30),
-                    ],
-                  )
-                : Center(
-                    child: Row(
+                    ),
+                    const SizedBox(height: 30),
+                  ],
+                )
+              : Center(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'سلتك فارغة',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      SizedBox(
-                        width: 20,
-                      ),
+                      SizedBox(width: 20),
                       SvgPicture.asset(AssetsConstants.cartEmpteySvg),
                     ],
-                  )));
+                  ),
+                ),
+        );
       },
     );
   }

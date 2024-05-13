@@ -17,7 +17,7 @@ class RecentlyProduct extends StatelessWidget {
     return Consumer<RecentlyBrowsed>(builder: (context, recentlyBrowsed, _) {
       var products = recentlyBrowsed.productRecentlyList;
 
-      return Column(
+      return recentlyBrowsed.productRecentlyList.isNotEmpty? Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -70,7 +70,7 @@ class RecentlyProduct extends StatelessWidget {
             ),
           )
         ],
-      );
+      ):SizedBox();
     });
   }
 }

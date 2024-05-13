@@ -48,7 +48,7 @@ class Resulte_Scacrh extends StatelessWidget {
                                 ));
                           },
                           available:
-                              cardProvider.itemsSearched[index].available,
+                              cardProvider.itemsSearched[index].available, addCart:(){},
                         ),
                       ),
                     ),

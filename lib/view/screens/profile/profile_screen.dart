@@ -72,8 +72,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           subtitle: '',
                           onTap: () {},
                         ),
-                        // باقي عناصر واجهة المستخدم الخاصة بالمستخدم المسجل الدخول
-                        // مثل إعدادات الحساب وتسجيل الخروج
+                        CardSetting(
+                          icon: AssetsConstants.logOutSvg,
+                          title: 'تسجيل خروج',
+                          onTap: () async {
+                            setState(() {
+                              loading = true;
+                            });
+                            await AuthController().signOut();
+                            setState(() {
+                              loading = false;
+                            });
+                          },
+                        ),
+                        CardSetting(
+                          icon: AssetsConstants.trashSvg,
+                          title: 'تعطيل الحساب',
+                          onTap: () async {
+                            setState(() {
+                              loading = true;
+                            });
+                            await AuthController().deleteAccount(context);
+                            setState(() {
+                              loading = false;
+                            });
+                          },
+                        ),
                       ],
                     );
                   }
@@ -82,26 +106,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             // باقي عناصر واجهة المستخدم التي لا تتطلب تهيئة المستخدم
             const SizedBox(height: 40),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                'الاعدادات العامة',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Column(
-              children: List.generate(
-                settingsItems.length,
-                (index) => CardSetting(
-                  icon: settingsItems[index].icon,
-                  title: settingsItems[index].title,
-                  onTap: () {
-                    // Handle onTap action
-                  },
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(15.0),
+            //   child: Text(
+            //     'الاعدادات العامة',
+            //     style: Theme.of(context).textTheme.titleLarge,
+            //   ),
+            // ),
+            // const SizedBox(height: 10),
+            // Column(
+            //   children: List.generate(
+            //     settingsItems.length,
+            //     (index) => CardSetting(
+            //       icon: settingsItems[index].icon,
+            //       title: settingsItems[index].title,
+            //       onTap: () {
+            //         // Handle onTap action
+            //       },
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
