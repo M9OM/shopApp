@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:stylish/controller/adress_controller.dart';
+import 'package:stylish/controller/location_controller.dart';
 import 'package:stylish/provider/cartProvider.dart';
-import 'package:stylish/view/screens/home/home_screen.dart';
+import 'package:stylish/view/screens/chekout/address/location_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-
+import 'package:stylish/view/screens/chekout/checkout_screen.dart';
 import 'controller/page_controller.dart';
 import 'core/theme/custom_colors.dart';
 import 'provider/recently_browsed_provider.dart';
-import 'view/screens/auth/login/login_screen.dart';
-import 'view/screens/main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +21,11 @@ void main() async {
     ChangeNotifierProvider(create: (_) => CartProvider()),
     ChangeNotifierProvider(create: (_) => PageControllerModel()),
     ChangeNotifierProvider(create: (_) => RecentlyBrowsed()),
+    ChangeNotifierProvider(create: (_) => AdressController()),
+    ChangeNotifierProvider(create: (_) => LocationController()),
+
+
+    
   ], child: const MyApp()));
 }
 
@@ -65,7 +70,7 @@ class MyApp extends StatelessWidget {
         // If the device locale is not supported, use the first one from the list (English)
         return supportedLocales.first;
       },
-      home: MainScreen(),
+      home:  CheckoutScreen(),
     );
   }
 }

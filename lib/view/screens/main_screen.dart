@@ -35,44 +35,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Consumer<CartProvider>(builder: (context, cardProvider, child) {
       return Scaffold(
-        drawer: const AppDrawer(),
-        // appBar: AppBar(
-        //   leading: IconButton(
-        //     onPressed: () {
-        //       controlMenu();
-        //     },
-        //     icon: SvgPicture.asset(AssetsConstants.menuSvg),
-        //   ),
-        //   actions: [
-        //     Stack(
-        //       children: [
-        //         IconButton(
-        //           icon: Stack(
-        //               children: [SvgPicture.asset(AssetsConstants.cartSvg)]),
-        //           onPressed: () {
-        //             Navigator.push(
-        //                 context,
-        //                 MaterialPageRoute(
-        //                   builder: (context) => const CartScreen(),
-        //                 ));
-        //           },
-        //         ),
-        //         Container(
-        //           padding: const EdgeInsets.all(6),
-        //           decoration: const BoxDecoration(
-        //               color: Colors.red, shape: BoxShape.circle),
-        //           child: Text(
-        //             cardProvider.productCardList.length.toString(),
-        //             textAlign: TextAlign.center,
-        //             style: const TextStyle(
-        //               color: Colors.white,
-        //             ),
-        //           ),
-        //         ),
-        //       ],
-        //     ),
-        //   ],
-        // ),
         body: IndexedStack(
           children: pages,
           index: _selectedIndex,
@@ -115,3 +77,4 @@ class _MainScreenState extends State<MainScreen> {
         ],
       );
 }
+

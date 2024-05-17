@@ -19,3 +19,8 @@ const Color primaryColor = Colors.black;
 const Color bgColor = Color.fromARGB(255, 248, 248, 248);
 const Color bgColorCard =Color.fromARGB(255, 249, 249, 249);
 const Color enableColor =Color.fromARGB(255, 224, 224, 224);
+
+
+
+const Color bgCard =const Color.fromARGB(255, 211, 218, 255);
+const Color iconColor =Colors.indigo;

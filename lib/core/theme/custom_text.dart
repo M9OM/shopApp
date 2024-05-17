@@ -5,8 +5,8 @@ import '../common/constants/size_constants.dart';
 class CustomTextThemes {
   CustomTextThemes._();
 
-  static const veryLargeText = TextStyle(fontSize: SizeConstants.veryLargeText);
-  static const largeText = TextStyle(fontSize: SizeConstants.largeText);
+  static const veryLargeText = TextStyle(fontSize: SizeConstants.veryLargeText,color: Colors.black);
+  static const largeText = TextStyle(fontSize: SizeConstants.largeText, color: Colors.black);
   static const largeBoldText =
       TextStyle(fontSize: SizeConstants.largeText, fontWeight: FontWeight.w700);
   static const midText = TextStyle(fontSize: SizeConstants.midText);
