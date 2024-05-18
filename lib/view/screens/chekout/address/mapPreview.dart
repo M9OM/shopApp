@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-
+import 'package:location/location.dart';
+import 'package:flutter/services.dart';
 import '../../../../controller/location_controller.dart';
+import 'package:geolocator/geolocator.dart';
 
 class MapPreview extends StatelessWidget {
   const MapPreview({Key? key}) : super(key: key);
@@ -21,12 +23,11 @@ class MapPreview extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: IgnorePointer(
-                  ignoring : true,
                   child: GoogleMap(
                       myLocationButtonEnabled: false,
                       myLocationEnabled: true,
                       initialCameraPosition: CameraPosition(
-                          zoom: 20.0, target: locationController.markerPosition)),
+                          zoom: 18.0, target: locationController.markerPosition)),
                 ),
               ),
             ),
@@ -53,4 +54,13 @@ class MapPreview extends StatelessWidget {
       );
     });
   }
+_getLocation() async
+      {
+        Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+        debugPrint('location: ${position.latitude}');
+        final coordinates = new Coordinates(position.latitude, position.longitude);
+        var addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+        var first = addresses.first;
+        print("${first.featureName} : ${first.addressLine}");
+      }
 }

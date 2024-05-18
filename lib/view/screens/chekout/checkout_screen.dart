@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish/view/screens/main_screen.dart';
 
 import 'address/address_screen.dart';
 
@@ -22,6 +23,15 @@ class _CheckoutScreenState extends State<CheckoutScreen>
     return Scaffold(
       appBar: AppBar(
         title: Text('الدفع'),
+        leading: IconButton(onPressed:() {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MainScreen(),
+                ),
+                (Route<dynamic> route) => false,
+              );
+        }, icon: Icon(Icons.close)),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(40),
           child: IgnorePointer(
